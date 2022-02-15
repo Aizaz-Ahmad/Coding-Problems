@@ -1,5 +1,5 @@
-//https://leetcode.com/problems/spiral-matrix/submissions/
-
+//https://leetcode.com/problems/spiral-matrix
+//https://leetcode.com/problems/spiral-matrix/discuss/20573/A-concise-C%2B%2B-implementation-based-on-Directions
 class Solution {
 private:
     void spiralOrder(vector<vector<int>>& matrix, vector<int>& res, int sr, int sc,

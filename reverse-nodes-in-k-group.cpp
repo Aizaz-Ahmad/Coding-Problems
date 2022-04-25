@@ -37,3 +37,47 @@ public:
         return head;
     }
 };
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class ImprovedSolution {
+    ListNode* reverse(ListNode* head, ListNode* tail){
+        ListNode* nextChunkHead = tail->next;
+        ListNode* prev = nextChunkHead;
+        while(head != nextChunkHead){
+            ListNode* next = head->next;
+            head->next = prev;
+            prev = head;
+            head = next;
+        }
+        return prev;
+    }
+public:
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        ListNode dummy(0);
+        ListNode* temp = &dummy;
+        temp->next = head;
+        ListNode* prev = temp;
+        ListNode* h = head,* tail = head;
+        while(true){
+            for(int i = 0; i < k - 1 && tail; i++)
+                tail = tail->next;
+            if(tail){
+                ListNode* nextChunkHead = tail->next;
+                prev->next = reverse(h, tail);
+                prev = h;
+                h = tail = nextChunkHead;
+            }
+            else break;
+        }   
+        return dummy.next;
+    }
+};
